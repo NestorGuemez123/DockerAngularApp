@@ -1,10 +1,10 @@
 version: "3"
 services:
   web-seed:
-    image: node:12.16.1-alpine
+    image: node:12.16.1
     working_dir: "/usr/src/seed"
     volumes:
       - ./web:/usr/src/seed_output
     entrypoint: >
-      ash -c "npm i @angular/cli@9 <<< N && npx ng new --skipInstall --skipGit && 
+      bash -c "npm i @angular/cli@9 <<< N && npx ng new --skipInstall --skipGit && 
              mv `ls -d */ | grep -v node_modules | xargs -I {} find {} -mindepth 1 -maxdepth 1` /usr/src/seed_output"

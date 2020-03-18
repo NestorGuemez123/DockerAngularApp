@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web-dev:
+    container_name: web-dev
+    build:
+      context: ./web
+      dockerfile: dev.Dockerfile
+    ports:
+      - "4200:4200"
+    environment:
+      SHELL: /bin/bash
+      NODE_ENV: development
+    volumes:
+      - ~/web/.gitconfig:/etc/gitconfig
+      - ./web/src:/usr/src/app/src:cached
+      - ./web/e2e:/usr/src/app/e2e:cached
+      - ./web/tsconfig.json:/usr/src/app/tsconfig.json
+      - ./web/tslint.json:/usr/src/app/tslint.json
+      - ./web/package.json:/usr/src/app/package.json
+    entrypoint: ng serve --host 0.0.0.0 --poll 1

@@ -12,3 +12,4 @@ RUN npm install
 
 # Copy the remaining source code
 COPY . .
+
