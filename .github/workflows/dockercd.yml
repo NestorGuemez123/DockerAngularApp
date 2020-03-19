@@ -1,0 +1,24 @@
+name: Docker CD
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Publish web image to Registry
+      uses: elgohr/Publish-Docker-Github-Action@2.13
+      with:
+        name: nestoragc123/docker-angular-app/web
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        dockerfile: ./web/prod.Dockerfile
+        context: ./web
+        tags: "latest"
+      
