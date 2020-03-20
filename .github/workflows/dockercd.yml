@@ -12,13 +12,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Publish web image to Registry
-      uses: elgohr/Publish-Docker-Github-Action@2.13
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v1.0.0
       with:
-        name: nestoragc123/docker-angular-app/web
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: nestoragc123/docker-angular-app/web
+        tags: latest
+        path: ./web
         dockerfile: ./web/prod.Dockerfile
-        context: ./web
-        tags: "latest"
-      
+
